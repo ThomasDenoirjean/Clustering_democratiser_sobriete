@@ -38,6 +38,7 @@ def extract_items(dataframe):
                     'index': idx,  # Use original index as reference
                     'ITEM': row['ITEM'],
                     'FACTOR': factor,
+                    'doi': row['doi']
                 })
         elif row['FACTOR'] != '\"None\"':
             print(row['FACTOR'])
