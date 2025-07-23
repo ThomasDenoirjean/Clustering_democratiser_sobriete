@@ -221,12 +221,12 @@ def subdivide_clusters(clustered_sentences, cluster_assignment, reduced_embeddin
 
 def create_final_df(sentences_df, doi_col, ini_cluster_assignment, new_cluster_assignement, indices_to_update):
     sentences_df.insert(1, "doi", doi_col)
-    sentences_df.insert(1, "cluster", ini_cluster_assignment)
+    sentences_df.insert(1, "cluster_id", ini_cluster_assignment)
 
     updates = dict(zip(indices_to_update, new_cluster_assignement))
     updated = [updates.get(i, val) for i, val in enumerate(ini_cluster_assignment)]
 
-    sentences_df.insert(2, "cluster_2", updated)
+    sentences_df.insert(2, "recluster_id", updated)
 
     return sentences_df
 
