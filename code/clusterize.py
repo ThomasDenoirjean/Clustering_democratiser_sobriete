@@ -99,11 +99,6 @@ def clusterize(corpus_list, corpus_embeddings,
     return hdbscan_model, cluster_assignment, clustered_sentences, noise, reduced_embeddings
 
 
-def get_noise_sample(noise, n_samples=100):
-    noise_dict = {'samples': random.sample(noise, n_samples)}
-    return pd.DataFrame.from_dict(noise_dict)
-
-
 def get_cluster_summary(clustered_sentences):
     ## Extraction of a random sample of sentences to validation
     # Suppress duplicate sentences
@@ -132,12 +127,6 @@ def get_cluster_summary(clustered_sentences):
 
 
 def save_results(params, results, noise_df, cluster_summary_df, hdbscan_model, domain, cat):
-    #faire une version qui enregistre chaque essai
-    # import uuid
-
-    # length = 8
-    # random_string = str(uuid.uuid4()).replace('-', '')[:length]
-
     pd.DataFrame.from_dict(params, orient='index', columns=['valeur']).to_csv(f'../outputs/params_{domain}_{cat}.csv')
     pd.DataFrame.from_dict(results, orient='index', columns=['valeur']).to_csv(f'../outputs/results_{domain}_{cat}.csv')
     noise_df.to_csv(f'../outputs/noise_sample_{domain}_{cat}.csv')
